@@ -4,17 +4,26 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const navItems = [
-  { path: "/", label: "Home" },
-  { path: "/products/:id", label: "Products" },
-  { path: "/contact", label: "Contact Us" },
+  { path: "/", label: "Bosh sahifa" },
+  { path: "/products", label: "Mahsulotlar" },
+  { path: "/contact", label: "Bog‘lanish" },
 ];
 
 function Header() {
   const { allProducts = 0, price = 0 } = useSelector((state) => state.products);
 
   return (
-    <header className="bg-base-100 shadow-md">
-      <div className="navbar max-w-[1600px] mx-auto">
+    <header className="bg-base-100 shadow-sm border-b border-base-200">
+      <div className="bg-primary text-primary-content text-sm">
+        <div className="max-w-[1600px] mx-auto px-4 py-2 flex flex-wrap items-center justify-between gap-2">
+          <p>Bepul yetkazib berish va 24/7 qo‘llab-quvvatlash</p>
+          <div className="flex items-center gap-4">
+            <span>+998 (90) 123-45-67</span>
+            <span>info@shumarket.uz</span>
+          </div>
+        </div>
+      </div>
+      <div className="navbar max-w-[1600px] mx-auto px-4">
         {/* Left side */}
         <div className="flex-1 navbar-start">
           {/* Mobile menu */}
@@ -43,14 +52,17 @@ function Header() {
           </div>
 
           {/* Logo */}
-          <Link to="/" className="btn btn-secondary text-xl normal-case">
-            MyCard
+          <Link to="/" className="flex items-center gap-2 text-xl font-bold">
+            <span className="h-10 w-10 rounded-2xl bg-primary/10 text-primary grid place-items-center">
+              SM
+            </span>
+            Shu Market
           </Link>
         </div>
 
         {/* Center (Desktop menu) */}
-        <div className="navbar-center hidden md:flex">
-          <ul className="flex items-center gap-7">
+        <div className="navbar-center hidden lg:flex">
+          <ul className="flex items-center gap-7 font-medium">
             {navItems.map(({ path, label }) => (
               <li key={path}>
                 <Link to={path} className="link link-hover">
@@ -63,6 +75,30 @@ function Header() {
 
         {/* Right side */}
         <div className="navbar-end flex-none gap-3">
+          <div className="hidden md:flex items-center gap-2">
+            <label className="input input-bordered flex items-center gap-2 w-64">
+              <input
+                type="text"
+                className="grow"
+                placeholder="Mahsulot qidirish"
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 opacity-70"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-4.35-4.35m1.6-5.15a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z"
+                />
+              </svg>
+            </label>
+            <button className="btn btn-primary btn-sm">Aksiya</button>
+          </div>
           {/* Cart */}
           <div className="dropdown dropdown-end">
             <div
